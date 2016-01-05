@@ -198,8 +198,7 @@ cedarx_result_e libcedarx_display_alloc_frame(cedarx_picture_t *picture);
 void libcedarx_display_free_frame(cedarx_picture_t *picture);
 cedarx_result_e libcedarx_display_request_layer(int top);
 void libcedarx_display_release_layer(void);
-cedarx_result_e libcedarx_display_video_frame(cedarx_picture_t *picture,
-                int player_x, int player_y, int player_w, int player_h);
+cedarx_result_e libcedarx_display_video_frame(cedarx_picture_t *picture);
 char* libcedarx_version(void);
 
 #ifdef __cplusplus

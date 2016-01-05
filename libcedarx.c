@@ -1641,8 +1641,7 @@ void libcedarx_display_release_layer(void)
     }
 }
 
-cedarx_result_e libcedarx_display_video_frame(cedarx_picture_t *picture,
-                int player_x, int player_y, int player_w, int player_h)
+cedarx_result_e libcedarx_display_video_frame(cedarx_picture_t *picture)
 {
     int time = 20;
     unsigned long args[4];
@@ -1658,6 +1657,7 @@ cedarx_result_e libcedarx_display_video_frame(cedarx_picture_t *picture,
     if (display->info.enable) {
         if (!display->info.init) {
             __disp_layer_info_t layer_info;
+
             u32 screen_width, screen_height;
             
             args[0] = 0;
@@ -1691,10 +1691,6 @@ cedarx_result_e libcedarx_display_video_frame(cedarx_picture_t *picture,
             layer_info.src_win.y = picture->left_offset;
             layer_info.src_win.width = picture->display_width;
             layer_info.src_win.height = picture->display_height;
-            layer_info.scn_win.x = player_x;
-            layer_info.scn_win.y = player_y;
-            layer_info.scn_win.width = player_w; //screen_width;
-            layer_info.scn_win.height = player_h; // screen_height;
             args[0] = 0;
             args[1] = display->info.layer;
             args[2] = (unsigned long)(&layer_info);
