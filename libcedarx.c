@@ -1186,6 +1186,11 @@ cedarx_result_e libcedarx_decoder_open(cedarx_info_t* info)
   mem_set(&config, 0, sizeof(vconfig_t));
   mem_set(&stream_info, 0, sizeof(vstream_info_t));
   
+  if (info->rot != 0)
+  {
+      config.rotate_enable = 1;
+      config.rotate_angle = info->rot;
+  }
   config.max_video_width  = MAX_SUPPORTED_VIDEO_WIDTH;
   config.max_video_height = MAX_SUPPORTED_VIDEO_HEIGHT;
   config.max_output_width = MAX_SUPPORTED_OUTPUT_WIDTH; 
@@ -1636,7 +1641,8 @@ void libcedarx_display_release_layer(void)
     }
 }
 
-cedarx_result_e libcedarx_display_video_frame(cedarx_picture_t *picture)
+cedarx_result_e libcedarx_display_video_frame(cedarx_picture_t *picture,
+                int player_x, int player_y, int player_w, int player_h)
 {
     int time = 20;
     unsigned long args[4];
@@ -1685,10 +1691,10 @@ cedarx_result_e libcedarx_display_video_frame(cedarx_picture_t *picture)
             layer_info.src_win.y = picture->left_offset;
             layer_info.src_win.width = picture->display_width;
             layer_info.src_win.height = picture->display_height;
-            layer_info.scn_win.x = 0;
-            layer_info.scn_win.y = 0;
-            layer_info.scn_win.width = screen_width;
-            layer_info.scn_win.height = screen_height;
+            layer_info.scn_win.x = player_x;
+            layer_info.scn_win.y = player_y;
+            layer_info.scn_win.width = player_w; //screen_width;
+            layer_info.scn_win.height = player_h; // screen_height;
             args[0] = 0;
             args[1] = display->info.layer;
             args[2] = (unsigned long)(&layer_info);
