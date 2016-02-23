@@ -152,6 +152,10 @@ typedef struct {
     u32 left_offset;			
     u32 display_width;			
     u32 display_height;			
+    u32 screen_x;
+    u32 screen_y;
+    u32 screen_width;
+    u32 screen_height;
 	u32 size_y[2];
 	u32 size_u[2];
 	u32 size_v[2];

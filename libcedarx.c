@@ -1687,10 +1687,14 @@ cedarx_result_e libcedarx_display_video_frame(cedarx_picture_t *picture)
             layer_info.fb.size.width = picture->width;
             layer_info.fb.size.height = picture->height; 
             
-            layer_info.src_win.x = picture->top_offset;
-            layer_info.src_win.y = picture->left_offset;
+            layer_info.src_win.x = picture->left_offset;
+            layer_info.src_win.y = picture->top_offset;
             layer_info.src_win.width = picture->display_width;
             layer_info.src_win.height = picture->display_height;
+            layer_info.scn_win.x = picture->screen_x;
+            layer_info.scn_win.y = picture->screen_y;
+            layer_info.scn_win.width = picture->screen_width;
+            layer_info.scn_win.height = picture->screen_height;
             args[0] = 0;
             args[1] = display->info.layer;
             args[2] = (unsigned long)(&layer_info);
