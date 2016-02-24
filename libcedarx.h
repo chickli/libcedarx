@@ -152,10 +152,6 @@ typedef struct {
     u32 left_offset;			
     u32 display_width;			
     u32 display_height;			
-    u32 screen_x;
-    u32 screen_y;
-    u32 screen_width;
-    u32 screen_height;
 	u32 size_y[2];
 	u32 size_u[2];
 	u32 size_v[2];
@@ -202,7 +198,7 @@ cedarx_result_e libcedarx_display_alloc_frame(cedarx_picture_t *picture);
 void libcedarx_display_free_frame(cedarx_picture_t *picture);
 cedarx_result_e libcedarx_display_request_layer(int top);
 void libcedarx_display_release_layer(void);
-cedarx_result_e libcedarx_display_video_frame(cedarx_picture_t *picture);
+cedarx_result_e libcedarx_display_video_frame(cedarx_picture_t *picture, int x, int y, int w, int h);
 char* libcedarx_version(void);
 
 #ifdef __cplusplus
